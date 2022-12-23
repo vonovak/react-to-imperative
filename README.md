@@ -5,12 +5,12 @@ Convert React (Native) components for imperative use.
 ## Why?
 
 React is great for declarative UI, but React Native comes with many apis that have to be used imperatively, even though they also describe UI.
-For example: [ActionSheetIOS](https://reactnative.dev/docs/next/actionsheetios), [react-native-menu](https://github.com/react-native-menu/menu) or the old [PopupMenu(https://github.com/facebook/react-native/blob/6fa51e0c47413b8886b0ed04e4b909ca12b2717c/Libraries/ReactNative/NativeUIManager.js#L112)].
+For example: [ActionSheetIOS](https://reactnative.dev/docs/next/actionsheetios), [react-native-menu](https://github.com/react-native-menu/menu) or the old [PopupMenu](https://github.com/facebook/react-native/blob/6fa51e0c47413b8886b0ed04e4b909ca12b2717c/Libraries/ReactNative/NativeUIManager.js#L112)].
 
 This package serves as a bridge between the two and allows to extract props from React Elements.
 
 <details>
-  <summary>**Read more motivation**</summary>
+  <summary>Read more motivation</summary>
 
 Consider an example: In order to pass the right params to the imperative api of `ActionSheet`, you'll have to create array of string for the button titles. That can get quite tedious, for example:
 
@@ -119,8 +119,7 @@ yarn add react-to-imperative
 
 ## Examples
 
-// TODO
-There are many examples in the [test suite](). Please do see them to understand what the package does. There is also a simple [example app]().
+There are many examples in the [test suite](./src/__tests__/index.test.tsx). Please do see them to understand what the package does. There is also a simple [example app](./example/src/App.tsx).
 
 ## Usage
 
@@ -142,10 +141,10 @@ type inspectElements<I extends Props, O extends Props = I> = (
         maxDepth?: number;
         elementCreator?: ElementCreator;
       }
-) => O[]
+) => O[];
 ```
 
-The first arguments is an (array of) React elements from which you want to extract props. The second argument is either a props-extracting function or an object which allows advanced control. It returns an array of props extracted from the provided React elements.
+The first arguments is an (array of) React elements from which you want to extract props. The second argument is either a props-extracting function or an object which allows advanced control (all options described below). It returns an array of props extracted from React elements you provide.
 
 ### `propsExtractor`
 
@@ -161,9 +160,9 @@ type PropsExtractor<I extends Props, O extends Props = I> = (element: {
 
 This is a function that you implement. It accepts `({ props, type, depth })`. `props` is the props object, `type` is a component type (`div`, `View`, `React.Fragment` ...), `depth` is the current depth in the explored React tree. You should return:
 
-- an object with props if it's called with a React element that you're interested in
-- `true` to denote that the provided React element if not of interested to you but you want the search to carry on one level deeper in the React tree
-- `false` to denote you're not interested in exploring a part of React tree further
+- an object with props if the provided React element is one you're interested in
+- `true` to denote that the provided React element is of no interested to you but you want the search to carry on one level deeper in the React tree
+- `false` to denote you're not interested in exploring the provided part of React tree
 
 ### `maxDepth`
 
@@ -171,7 +170,7 @@ Controls the maximum depth of the React tree that will be explored. Defaults to 
 
 ### `elementCreator`
 
-A function that, given `props` and `type`, creates a new React element. The default implementation is [here](). The default implementation simply calls `type(props)` and swallows any errors that might come if the limitations (see next paragraph) are violated.
+A function that, given `props` and `type`, creates a new React element. The default implementation is [here](./src/index.ts#L103). The default implementation simply calls `type(props)` and swallows any errors that might come if the limitations (see next paragraph) are violated.
 
 ### Limitations
 
