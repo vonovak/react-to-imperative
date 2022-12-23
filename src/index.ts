@@ -24,15 +24,15 @@ export const inspectElements = <I extends Props, O extends Props = I>(
   opts:
     | PropsExtractor<I, O>
     | {
-        propsExtractor?: PropsExtractor<I, O>;
+        propsExtractor: PropsExtractor<I, O>;
         maxDepth?: number;
         elementCreator?: ElementCreator;
       }
 ): O[] => {
   const {
+    propsExtractor,
     maxDepth = 3,
     elementCreator = callSafe,
-    propsExtractor = extractProps as PropsExtractor<I, O>,
   } = typeof opts === 'function' ? { propsExtractor: opts } : opts;
 
   const extractedProps = extractFromElement<I, O>(
@@ -109,8 +109,4 @@ export const callSafe: ElementCreator = (type, props) => {
     // catches errors like "Invalid hook call" if you use hooks or "cannot call a class as a function" if you use class components
     return null;
   }
-};
-
-const extractProps: PropsExtractor<Props> = ({ props }) => {
-  return props;
 };

@@ -5,7 +5,7 @@ Convert React (Native) components for imperative use.
 ## Why?
 
 React is great for declarative UI, but React Native comes with many apis that have to be used imperatively, even though they also describe UI.
-For example: [ActionSheetIOS](https://reactnative.dev/docs/next/actionsheetios), [react-native-menu](https://github.com/react-native-menu/menu) or the old [PopupMenu](https://github.com/facebook/react-native/blob/6fa51e0c47413b8886b0ed04e4b909ca12b2717c/Libraries/ReactNative/NativeUIManager.js#L112)].
+For example: [ActionSheetIOS](https://reactnative.dev/docs/next/actionsheetios), [react-native-menu](https://github.com/react-native-menu/menu) or the old [PopupMenu](https://github.com/facebook/react-native/blob/6fa51e0c47413b8886b0ed04e4b909ca12b2717c/Libraries/ReactNative/NativeUIManager.js#L112).
 
 This package serves as a bridge between the two and allows to extract props from React Elements.
 
