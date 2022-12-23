@@ -160,7 +160,7 @@ type PropsExtractor<I extends Props, O extends Props = I> = (element: {
 
 This is a function that you implement. It accepts `({ props, type, depth })`. `props` is the props object, `type` is a component type (`div`, `View`, `React.Fragment` ...), `depth` is the current depth in the explored React tree. You should return:
 
-- an object with props if the provided React element is one you're interested in
+- an object with props you want to extract if the provided React element is one you're interested in
 - `true` to denote that the provided React element is of no interested to you but you want the search to carry on one level deeper in the React tree
 - `false` to denote you're not interested in exploring the provided part of React tree
 
