@@ -4,10 +4,10 @@ Convert React (Native) components for imperative use.
 
 ## Why?
 
-React is great for declarative UI, but React Native comes with many apis that have to be used imperatively, even though they also describe UI.
+React is great for declarative UI, but React Native comes with many apis that have to be used imperatively, even though they also describe UI and declarative approach would fit them well.
 For example: [ActionSheetIOS](https://reactnative.dev/docs/next/actionsheetios), [react-native-menu](https://github.com/react-native-menu/menu) or the old [PopupMenu](https://github.com/facebook/react-native/blob/6fa51e0c47413b8886b0ed04e4b909ca12b2717c/Libraries/ReactNative/NativeUIManager.js#L112).
 
-This package serves as a bridge between the two and allows to extract props from React Elements.
+This package serves as a bridge from declarative (React) to imperative by extracting props from React Elements.
 
 <details>
   <summary>Read more motivation</summary>
@@ -137,7 +137,7 @@ type inspectElements<I extends Props, O extends Props = I> = (
   opts:
     | PropsExtractor<I, O>
     | {
-        propsExtractor?: PropsExtractor<I, O>;
+        propsExtractor: PropsExtractor<I, O>;
         maxDepth?: number;
         elementCreator?: ElementCreator;
       }
@@ -160,8 +160,8 @@ type PropsExtractor<I extends Props, O extends Props = I> = (element: {
 
 This is a function that you implement. It accepts `({ props, type, depth })`. `props` is the props object, `type` is a component type (`div`, `View`, `React.Fragment` ...), `depth` is the current depth in the explored React tree. You should return:
 
-- an object with props you want to extract if the provided React element is one you're interested in
-- `true` to denote that the provided React element is of no interested to you but you want the search to carry on one level deeper in the React tree
+- an object with props you want to extract if the provided React element is one you're interested in. Search will not carry on deeper in the React tree in this case (please open an issue if you need to change this).
+- `true` to denote that the provided React element is of no interested to you but you want the search to carry on one level deeper in the React tree (in the elements `children`)
 - `false` to denote you're not interested in exploring the provided part of React tree
 
 ### `maxDepth`
