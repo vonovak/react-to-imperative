@@ -144,7 +144,7 @@ type inspectElements<I extends Props, O extends Props = I> = (
 ) => O[];
 ```
 
-The first arguments is an (array of) React elements from which you want to extract props. The second argument is either a props-extracting function or an object which allows advanced control (all options described below). It returns an array of props extracted from React elements you provide.
+The first argument is an (array of) React elements from which you want to extract props. The second argument is either a props-extracting function or an object which allows advanced control (all options described below). It returns an array of props extracted from React elements you provide.
 
 ### `propsExtractor`
 
@@ -174,7 +174,7 @@ A function that, given `props` and `type`, creates a new React element. The defa
 
 ### Limitations
 
-The `inspectElements` function only functions correctly for pure function components. It does not work if you use hooks or if you use class components - those will be ignored by default.
+The `inspectElements` function only functions correctly for pure function components. It does not work if you use hooks or if you use class components - those will be ignored by default. If you need your components to use state, lift the state up.
 
 ## Contributing
 
