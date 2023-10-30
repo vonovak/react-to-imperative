@@ -160,7 +160,7 @@ type PropsExtractor<I extends Props, O extends Props = I> = (element: {
 
 This is a function that you implement. It accepts `({ props, type, depth })`. `props` is the props object, `type` is a component type (`div`, `View`, `React.Fragment` ...), `depth` is the current depth in the explored React tree. You should return:
 
-- an object with props you want to extract if the provided React element is one you're interested in. Search will not carry on deeper in the React tree in this case (please open an issue if you need to change this).
+- an object if the provided React element is one you're interested in [see example](https://github.com/vonovak/react-to-imperative/blob/c1bf21ccfb19ec031f2c75080506b3c6ca456524/example/src/App.tsx#L38). Search will not carry on deeper in the React tree in this case (please open an issue if you need to change this).
 - `true` to denote that the provided React element is of no interested to you but you want the search to carry on one level deeper in the React tree (in the element's `children`)
 - `false` to denote you're not interested in exploring the provided part of React tree
 
